@@ -1,0 +1,16 @@
+{
+    "name": "krisanalfa/blade-theme",
+    "description": "Blade Theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Krisan Alfa Timur",
+            "email": "krisan47@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "KrisanAlfa\\Theme\\BladeTheme": "src"
+        }
+    }
+}

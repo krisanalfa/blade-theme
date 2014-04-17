@@ -1,0 +1,10 @@
+body { background:#fcfcfc; overflow: auto; padding-top: 55px; }
+select { padding:.25em; }
+hr { border:1px dotted #eee; border-width:2px 0 0; }
+a { color: #95C648; }
+button, .button , input[type="submit"] { background-color: #95C648; }
+a:hover { color: #3B5A1B; }
+input:focus { border:1px solid #95C648; }
+.button.warning { background-color: #E0AD24 }
+.navbar ul.button-group li a { line-height: 120%; background: transparent; color: #95C648; border: 1px solid #95C648; }
+.navbar ul.button-group li a:hover { background-color: #3B5A1B; border: 1px solid #3B5A1B; }
