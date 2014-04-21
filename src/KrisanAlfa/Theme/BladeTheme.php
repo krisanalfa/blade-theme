@@ -91,12 +91,12 @@ class BladeTheme extends \Bono\Theme\Theme
 
         foreach ($this->baseDirectories as $dirs) {
             foreach ($dirs as $dir) {
-                if ($t = $this->tryTemplate(
+                if ($tpl = $this->tryTemplate(
                     $dir . DIRECTORY_SEPARATOR . 'templates',
                     $template.$this->extension,
                     $view
                 )) {
-                    return $t;
+                    return $tpl;
                 }
             }
         }
@@ -138,7 +138,8 @@ class BladeTheme extends \Bono\Theme\Theme
     public function partial($template, $data)
     {
         $app      = App::getInstance();
-        $template = implode('.', explode('/', $template)) ?: null;
+        $template = explode('/', $template);
+        $template = implode('.', $template) ?: null;
 
         if (! $template) {
             $app->error(new \RuntimeException('Partial view cannot renderred, because the template is NULL'));

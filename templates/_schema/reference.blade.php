@@ -6,7 +6,7 @@ $entries = \Norm\Norm::factory(ucfirst($self->get('name')))->find();
     <option value="">Select one</option>
     @foreach ($entries as $entry)
         <option value="{{ $entry->getId() }}" {{ ($entry->getId() === $value ? 'selected' : '') }}>
-            {{ $entry->get('name') }}
+            {{ $entry->get($self->get('foreignLabel')) }}
         </option>
     @endforeach
 </select>

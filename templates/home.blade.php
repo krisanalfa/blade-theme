@@ -11,7 +11,8 @@
     <p>
         You can override the route from <code>www/index.php</code> file.
         Or if you just want to override the template, you can override it from (or
-        create new file at) <code>templates/home.blade.php</code>.
+        create new file at) <code>templates/home.blade.php</code>. If you want to change the layout,
+        you may create a new file at <code>templates/layout.blade.php</code>
     </p>
 
     <p>
