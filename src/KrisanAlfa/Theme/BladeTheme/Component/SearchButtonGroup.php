@@ -12,10 +12,15 @@ use \Slim\View;
  * @copyright   2013 PT Sagara Xinix Solusitama
  * @link        http://xinix.co.id/products/viper
  * @license     https://raw.github.com/krisanalfa/viper/master/LICENSE
- * @package     Viper
+ * @package     BladeTheme
  */
 class SearchButtonGroup
 {
+    /**
+     * [$config description]
+     *
+     * @var [type]
+     */
     protected $config;
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Bono - PHP5 Web Framework
+ * Blade Theme
  *
  * MIT LICENSE
  *
@@ -26,8 +26,8 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * @category  View
- * @package   Bono
+ * @category  Theme
+ * @package   BladeTheme
  * @author    Krisan Alfa Timur <krisan47@gmail.com>
  * @copyright 2013 PT Sagara Xinix Solusitama
  * @license   https://raw.github.com/xinix-technology/bono/master/LICENSE MIT
@@ -40,8 +40,8 @@ use Bono\App;
 /**
  * A Blade Theme for Bono Theme
  *
- * @category  View
- * @package   Bono
+ * @category  Theme
+ * @package   BladeTheme
  * @author    Krisan Alfa Timur <krisan47@gmail.com>
  * @copyright 2013 PT Sagara Xinix Solusitama
  * @license   https://raw.github.com/xinix-technology/bono/master/LICENSE MIT
@@ -60,7 +60,8 @@ class BladeTheme extends \Bono\Theme\Theme
     {
         parent::__construct($config);
 
-        $directory = reset(explode(DIRECTORY_SEPARATOR.'src', __DIR__));
+        $directory = explode(DIRECTORY_SEPARATOR.'src', __DIR__);
+        $directory = reset($directory);
 
         $this->addBaseDirectory($directory, 5);
 
@@ -115,7 +116,8 @@ class BladeTheme extends \Bono\Theme\Theme
         $dir = rtrim($dir, DIRECTORY_SEPARATOR);
 
         if (is_readable($dir.DIRECTORY_SEPARATOR.$template)) {
-            $template = reset(explode($this->extension, $template));
+            $template = explode($this->extension, $template);
+            $template = reset($template);
 
             if (isset($view)) {
                 $view->setTemplatesDirectory($dir);
