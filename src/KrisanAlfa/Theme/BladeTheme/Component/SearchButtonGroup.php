@@ -17,11 +17,11 @@ use \Slim\View;
 class SearchButtonGroup
 {
     /**
-     * [$config description]
+     * SearchButtonGroup configuration
      *
-     * @var [type]
+     * @var array
      */
-    protected $config;
+    protected $config = array();
 
     /**
      * Contstructor, build the basic configuration

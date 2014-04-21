@@ -52,9 +52,9 @@ class BladeTheme extends \Bono\Theme\Theme
     protected $extension = '.blade.php';
 
     /**
-     * [__construct description]
+     * Add base directory to the view base directory array and resolve asset files
      *
-     * @param [type] $config [description]
+     * @param $array $config BladeTheme configuration
      */
     public function __construct($config)
     {
@@ -77,12 +77,12 @@ class BladeTheme extends \Bono\Theme\Theme
     }
 
     /**
-     * [resolve description]
+     * Resolve template path based on baseDirectory array
      *
-     * @param [type] $template [description]
-     * @param [type] $view     [description]
+     * @param string $template Template to resolve
+     * @param mixed  $view     View engine
      *
-     * @return [type] [description]
+     * @return string Template to render
      */
     public function resolve($template, $view = null)
     {
@@ -103,11 +103,11 @@ class BladeTheme extends \Bono\Theme\Theme
     }
 
     /**
-     * [tryTemplate description]
+     * Try to find template inside baseDirectory array
      *
-     * @param [type] $dir      [description]
-     * @param [type] $template [description]
-     * @param [type] $view     [description]
+     * @param string $dir      Which directory that will be tested
+     * @param [type] $template The template that expected resides in directory
+     * @param [type] $view     View engine
      *
      * @return [type] [description]
      */
@@ -133,17 +133,13 @@ class BladeTheme extends \Bono\Theme\Theme
      * @param string $template Partial template string name
      * @param mixed  $data     The data that would be passed to partial content
      *
-     * @return KrisanAlfa\Blade\BonoBlade
+     * @return KrisanAlfa\Blade\BonoBlade::template
      */
     public function partial($template, $data)
     {
         $app      = App::getInstance();
         $template = explode('/', $template);
         $template = implode('.', $template) ?: null;
-
-        if (! $template) {
-            $app->error(new \RuntimeException('Partial view cannot renderred, because the template is NULL'));
-        }
 
         $app->view->replace($data);
 

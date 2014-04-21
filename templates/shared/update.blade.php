@@ -2,12 +2,13 @@
 <?php
 use \KrisanAlfa\Theme\BladeTheme\Helper\Form;
 
+$form = Form::create()->of($entry);
 ?>
 
 <h2>{{ f('controller.name') }}: Update</h2>
 
 <form method="POST">
-    {{ Form::create()->of($entry)->show() }}
+    {{ $form->show() }}
 
     <div>
         <a href="{{ f('controller.url', '/') }}" class="button">Back</a>

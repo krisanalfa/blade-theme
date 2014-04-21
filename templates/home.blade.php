@@ -16,11 +16,6 @@
     </p>
 
     <p>
-        If you dont like the way your application looks like you can override
-        the layout or implement custom theme.
-    </p>
-
-    <p>
         Best regards,<br>
         Bono Team
     </p>

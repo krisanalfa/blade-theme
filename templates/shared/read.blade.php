@@ -2,13 +2,14 @@
 <?php
 use \KrisanAlfa\Theme\BladeTheme\Helper\Form;
 
+$form = Form::create()->of($entry);
 ?>
 
 <h2>{{ f('controller.name') }}</h2>
 
 <form method="POST">
 
-    {{ Form::create()->of($entry)->show(array( 'readonly' => true )) }}
+    {{ $form->show(array('readonly' => true)) }}
 
     <div>
         <a href="{{ f('controller.url', '/') }}" class="button">Back</a>

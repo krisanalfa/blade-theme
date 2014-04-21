@@ -14,25 +14,25 @@ namespace KrisanAlfa\Theme\BladeTheme\Helper;
 class Form
 {
     /**
-     * [$schema description]
+     * Norm schema
      *
-     * @var [type]
+     * @var \Norm\Schema
      */
     protected $schema;
 
     /**
-     * [$data description]
+     * Data from controller that would be passed to the view
      *
-     * @var [type]
+     * @var mixed
      */
     protected $data;
 
     /**
-     * [create description]
+     * Create a new form staticaly
      *
-     * @param  [type] $arg [description]
+     * @param  mixed $arg The function arguments
      *
-     * @return [type]      [description]
+     * @return KrisanAlfa\Theme\BladeTheme\Helper\Form
      */
     public static function create($arg = null)
     {
@@ -40,9 +40,11 @@ class Form
     }
 
     /**
-     * [__construct description]
+     * Class constructor
      *
-     * @param [type] $arg [description]
+     * @param mixed $arg The function arguments
+     *
+     * @return void
      */
     public function __construct($arg = null)
     {
@@ -58,11 +60,11 @@ class Form
     }
 
     /**
-     * [of description]
+     * Create a form binded to a model
      *
-     * @param  [type] $data [description]
+     * @param Norm\Cursor $data Entry
      *
-     * @return [type]       [description]
+     * @return KrisanAlfa\Theme\BladeTheme\Helper\Form
      */
     public function of($data)
     {
@@ -73,9 +75,9 @@ class Form
     /**
      * [show description]
      *
-     * @param  array  $options [description]
+     * @param array  $options Options you want to create this form
      *
-     * @return [type]          [description]
+     * @return string HTML string of form
      */
     public function show($options = array())
     {
@@ -92,11 +94,11 @@ class Form
     }
 
     /**
-     * [label description]
+     * Get label of a form
      *
-     * @param  [type] $key [description]
+     * @param string $key Attribute of entry
      *
-     * @return [type]      [description]
+     * @return string
      */
     public function label($key)
     {
@@ -104,11 +106,11 @@ class Form
     }
 
     /**
-     * [input description]
+     * Create an input form
      *
-     * @param  [type] $key [description]
+     * @param string $key Attribute of entry
      *
-     * @return [type]      [description]
+     * @return string HTML string of input form
      */
     public function input($key)
     {
@@ -116,11 +118,11 @@ class Form
     }
 
     /**
-     * [readonly description]
+     * Create a readonly field, well known for read only operation
      *
-     * @param  [type] $key [description]
+     * @param string $key Attribute of entry
      *
-     * @return [type]      [description]
+     * @return string HTML string of input form
      */
     public function readonly($key)
     {
