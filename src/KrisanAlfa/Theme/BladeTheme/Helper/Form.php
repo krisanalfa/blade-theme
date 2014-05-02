@@ -2,6 +2,9 @@
 
 namespace KrisanAlfa\Theme\BladeTheme\Helper;
 
+use Norm\Norm;
+use Bono\App;
+
 /**
  * Create a form of entry bind by a model
  *
@@ -53,10 +56,10 @@ class Form
             $this->schema = $arg;
         } else {
             $name = (is_string($arg)) ? $arg : f('controller.name');
-            $this->schema = \Norm::factory($name)->schema();
+            $this->schema = Norm::factory($name)->schema();
         }
 
-        $this->data = \App::getInstance()->request->post();
+        $this->data = App::getInstance()->request->post();
     }
 
     /**

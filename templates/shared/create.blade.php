@@ -1,9 +1,8 @@
 @section('content')
-<?php
-use \KrisanAlfa\Theme\BladeTheme\Helper\Form;
-
+<?php use KrisanAlfa\Theme\BladeTheme\Helper\Form;
 $form = Form::create()->of($entry);
 ?>
+
 <h2>{{ f('controller.name') }}: Create</h2>
 
 <form method="POST">

@@ -1,7 +1,4 @@
-<?php
-use \Bono\Helper\URL;
-
-?>
+<?php use Bono\Helper\URL; ?>
 <!doctype html>
 <html lang="en">
 <head>
