@@ -1,52 +1,34 @@
 body { background:#fcfcfc; font-family: open_sansregular; }
 body > iframe { display: none; }
-#codeigniter_profiler { display:none }
 #pushstat { display: none; }
 .container { position: relative; }
 .container-fluid { padding-left: 20px; padding-right: 20px; }
 .wrapper { padding: 0 20px; }
 a { color: #39a3d0; }
 a.hover { color: #001842; }
-.button,
-a.button,
-input[type="submit"] {
-    border: 1px solid #39a3d0; background: transparent; color: #39a3d0; display: table; font-size: 1em; font-family: open_sanssemibold;
+.button, a.button, input[type="submit"] {
+    border: 1px solid #39a3d0;
+    background: transparent;
+    color: #39a3d0;
+    display: table;
+    font-size: 1em;
+    font-family: open_sanssemibold;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px;
 }
-.button:hover,
-a.button:hover,
-input[type="submit"]:hover {
-    background: #39a3d0; color: #fff;
-}
-a,
-input[type="submit"] {
-    /*-webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -ms-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    transition: all .4s ease;*/
-}
+.button:hover, a.button:hover, input[type="submit"]:hover { background: #39a3d0; color: #fff; }
 a.button.delete { color: #E92803; border-color: #E92803; }
 a.button.delete:hover { background: #E92803; color: #fff; border-color: #E92803; }
-span.field,
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="date"],
-input[type="number"],
-textarea { background: transparent; border: 0; border-bottom: 1px solid #ddd; font-size: 0.9em; }
+span.field, input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="number"], textarea { background: transparent; border: 0; border-bottom: 1px solid #ddd; font-size: 0.9em; }
 select { border: 0; border-bottom: 1px solid #ddd; background-color: transparent; cursor: pointer; font-size: 0.9em; text-indent: 0.01px; text-overflow: ""; }
 textarea { max-width: 100%; max-height: 98px; }
 ul.flat li:last-child { margin-right: 0; }
 
-table th,
-table td { font-size: 0.9em; }
-table .table-creator-empty,
-table .table-holder-empty { text-align: center; }
+table th, table td { font-size: 0.9em; }
+table .table-creator-empty, table .table-holder-empty { text-align: center; }
 
 .alert { position: fixed; top: 62px; padding: 0; left: 0; right: 0; }
 .alert p { margin: 0; text-align: center; font-size: 1em; padding: 5px 10px; cursor: pointer; }
@@ -76,21 +58,9 @@ table .table-holder-empty { text-align: center; }
 .nav-menu .nav .menu > li.login:hover ul li:hover a { color: #39a3d0; }
 .nav-menu .nav .menu > li.login:hover ul li:last-child { border-bottom: 0; }
 
-fieldset {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-}
+fieldset { -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
 fieldset legend { display: block; margin-bottom: 10px; font-size: 21px; line-height: 40px; color: #333333; border: 0; border-bottom: 1px solid #e5e5e5; width: auto; border: none; padding: 0 20px; font-weight: 400; }
-.table-container {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-}
+.table-container { -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
 
 #login {
     width: 550px; background: #fff; margin-top: 0;
@@ -113,14 +83,7 @@ fieldset legend { display: block; margin-bottom: 10px; font-size: 21px; line-hei
 #login .nav-login .placeholder a { margin-left: 5px; }
 
 #home { margin-top: 14%; margin-bottom: 17%; }
-#home .desktop {
-    background: rgba(255,255,255,0.25);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-}
+#home .desktop { background: rgba(255,255,255,0.25); -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
 #home .desktop .thumb-home { margin-bottom: 10px; }
 #home .desktop .thumb-home img { display: table; margin: 0 auto; }
 #home .desktop .thumb-home h3 { text-align:center; font-size: 1em; padding: 0; margin: 0; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 10px; }

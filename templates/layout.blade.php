@@ -13,8 +13,8 @@
 
     <link rel="stylesheet" href="{{ Theme::base('css/naked.css') }}">
     <link rel="stylesheet" href="{{ Theme::base('css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ Theme::base('css/font/montserrat/stylesheet.css') }}">
-    <link rel="stylesheet" href="{{ Theme::base('css/font/open_sans/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ Theme::base('font/montserrat/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ Theme::base('font/open_sans/stylesheet.css') }}">
     <link rel="stylesheet" href="{{ Theme::base('css/style.css') }}">
 
     <!-- PAGE LEVEL STYLING -->

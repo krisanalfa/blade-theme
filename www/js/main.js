@@ -1,17 +1,11 @@
 $(document).ready(function() {
     'use strict';
 
-    $(".alert p").click(function() {
-        $(this).addClass("hide");
-    });
+    $(".alert p").click(function() { $(this).addClass("hide"); });
 
-    $(".alert .close").click(function() {
-        $(this).parent ().addClass("hide");
-    });
+    $(".alert .close").click(function() { $(this).parent ().addClass("hide"); });
 
-    var s4 = window.s4 = function () {
-        return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    };
+    var s4 = window.s4 = function () { return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1); };
 
     var guid = window.guid = function() {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
@@ -20,9 +14,7 @@ $(document).ready(function() {
     stylized ();
 });
 
-
-
-// ======================================== xn ============================================
+// ================================================= xin ===============================================================
 function stylized () {
     $("*").hover(function () {
         $(this).addClass("hover");
@@ -63,4 +55,4 @@ function stylized () {
     $("[class^=tablelist] tr td:nth-child(odd)").addClass ("even");
     $("[class^=tablelist] tr td:nth-child(even)").addClass ("odd");
 }
-// =======================================================
+// =====================================================================================================================

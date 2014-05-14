@@ -70,6 +70,7 @@ class Form
     public function of($data)
     {
         $this->data = $data;
+
         return $this;
     }
 

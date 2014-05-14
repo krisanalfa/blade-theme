@@ -4,18 +4,24 @@
 </h2>
 
 <form action="" method="POST">
-    <input type="hidden" name="confirm" value="1">
-    <p>
-        Are you sure want to delete {{ count($ids).' entries' }}?
-    </p>
 
-    <div class="row">
-        <div class="span-12">
-            <ul class="flat">
-                <li><input type="submit" value="OK"></li>
-                <li><a href="{{ f('controller.url') }}" class="button">Cancel</a></li>
-            </ul>
+    <fieldset class="register">
+        <input type="hidden" name="confirm" value="1">
+        <p>
+            Are you sure want to delete {{ count($ids).' entries' }}?
+        </p>
+        <div class="row">
+            <div class="span-12">
+                <ul class="flat">
+                    <li>
+                        <input type="submit" value="OK">
+                    </li>
+                    <li>
+                        <a href="{{ f('controller.url') }}" class="button">Cancel</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </fieldset>
 </form>
 @endsection
