@@ -1,13 +1,24 @@
-<?php use Norm\Norm;
-$entries = Norm::factory(ucfirst($self->get('foreign')))->find();
-?>
+<?php
 
-<select name="{{ $self->get('foreign') }}">
-    <option>Select one</option>
+use Norm\Norm;
+
+$name = $self->get('name') ?: $self->get('foreign');
+
+if (! isset($entries)) {
+    $entries = Norm::factory(ucfirst($self->get('foreign')))->find();
+}
+
+?>
+<select name="{{ lcfirst($name) }}">
+    <option>&mdash;</option>
     @foreach ($entries as $entry)
-        <option value="{{ ($entry->get($self->get('foreignKey'))) ?: $entry->getId() }}"
-            {{ (($entry->get($self->get('foreignKey'))) ?: $entry->getId() === $value ? 'selected' : '') }} >
-            {{ $entry->get('name') }}
+        <?php
+            if ($entry instanceof \Norm\Cursor) $entry = $entry->toArray();
+
+            $v = ($entry[$self->get('foreignKey')]) ?: $entry['$id'];
+        ?>
+        <option value="{{ $v }}" {{ ($v == $value) ? 'selected' : '' }} >
+            {{ $entry[$self->get('foreignLabel')] }}
         </option>
     @endforeach
 </select>

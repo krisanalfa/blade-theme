@@ -1,21 +1,49 @@
 @section('content')
-<a href="{{ f('controller.url', '/null/create') }}" class="button"> <i class="fa fa-plus"></i> Create</a>
+<?php $schema = \Norm::factory(f('controller.name'))->schema(); ?>
 
-<ul class="listview">
-    <ul class="listview">
-        <li class="list-group-container">
-            <h2>{{ f('controller.name') }}</h2>
-            <ul class="list-group">
-                @foreach ($entries as $entry)
-                    <li class="plain">
-                        <a href="{{ f('controller.url', '/'.$entry['$id']) }}">
-                            {{ $entry[key($entry->collection->schema())] }}
-                        </a>
-                    </li>
-                @endforeach
+<h2 class="title-content">{{ f('controller.name') }}</h2>
+<div class="nav-form">
+    <div class="row">
+        <div class="span-12">
+            <ul class="flat pull-left">
+                <li>
+                    <a href="{{ f('controller.url', '/null/create') }}" class="button"> <i class="fa fa-plus"></i> Create</a>
+                </li>
             </ul>
-        </li>
-    </ul>
-</ul>
+        </div>
+    </div>
+</div>
 
+<div class="table-container">
+    <table class="table nowrap stripped">
+        <thead>
+            <tr>
+                @foreach ($schema as $key => $value)
+                    @if(! $schema[$key]->get('hidden'))
+                        <th>{{ $schema[$key]['label'] }}</th>
+                    @endif
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($entries as $entry)
+                <tr>
+                    @foreach ($schema as $key => $value)
+                        @if(! $schema[$key]->get('hidden'))
+                            <td>
+                                @if(reset($schema) == $schema[$key])
+                                    <a href="{{ f('controller.url', '/'.$entry['$id']) }}">
+                                        {{ $schema[$key]->presetPlain($entry[$key], $entry) }}
+                                    </a>
+                                @else
+                                    {{ $schema[$key]->presetPlain($entry[$key], $entry) }}
+                                @endif
+                            </td>
+                        @endif
+                    @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+   </table>
+</div>
 @endsection

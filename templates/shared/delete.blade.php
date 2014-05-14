@@ -1,5 +1,5 @@
 @section('content')
-<h2>
+<h2 class="">
     {{ 'Delete '.f('controller.name').' ('.count($ids).' entries)' }}
 </h2>
 
@@ -9,9 +9,13 @@
         Are you sure want to delete {{ count($ids).' entries' }}?
     </p>
 
-    <div>
-        <input type="submit" value="OK">
-        <a href="{{ f('controller.url') }}" class="button">Cancel</a>
+    <div class="row">
+        <div class="span-12">
+            <ul class="flat">
+                <li><input type="submit" value="OK"></li>
+                <li><a href="{{ f('controller.url') }}" class="button">Cancel</a></li>
+            </ul>
+        </div>
     </div>
 </form>
 @endsection

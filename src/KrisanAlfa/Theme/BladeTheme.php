@@ -87,7 +87,7 @@ class BladeTheme extends \Bono\Theme\Theme
     public function resolve($template, $view = null)
     {
         $segments = explode('/', $template);
-        $page = end($segments);
+        $page     = end($segments);
 
         foreach ($this->baseDirectories as $dirs) {
             foreach ($dirs as $dir) {
