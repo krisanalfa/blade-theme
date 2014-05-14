@@ -6,7 +6,6 @@
                     <div class="pull-left">
                         <h1 class="brand">
                             <a href="{{ URL::site() }}">
-                                <span class="logo-hki"></span>
                                 <span class="brand-logo">
                                     Bono </br>
                                     PHP Framework

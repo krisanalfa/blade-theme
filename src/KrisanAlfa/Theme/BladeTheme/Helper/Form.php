@@ -1,6 +1,4 @@
-<?php
-
-namespace KrisanAlfa\Theme\BladeTheme\Helper;
+<?php namespace KrisanAlfa\Theme\BladeTheme\Helper;
 
 use Norm\Norm;
 use Bono\App;
@@ -89,10 +87,16 @@ class Form
         $html = '';
 
         foreach ($this->schema as $key => $field) {
-            $html .= '<div class="row field field-'.$key.'">'."\n";
+            $html .= '<div class="span-12">';
+            $html .= '<div class="row">';
+            $html .= '<div class="span-2">';
             $html .= $this->label($key);
+            $html .= '</div>';
+            $html .= '<div class="span-10">';
             $html .= $options['readonly'] ? $this->readonly($key) : $this->input($key);
-            $html .= '</div>'."\n\n";
+            $html .= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
         }
 
         return $html;

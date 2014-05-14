@@ -58,7 +58,6 @@ table .table-holder-empty { text-align: center; }
 .nav-menu .wrapper { padding: 10px 0; }
 .nav-menu .brand { margin: 0; float: left; font-size: 1.1em; }
 .nav-menu .brand a { display: table; }
-.nav-menu .brand .logo-hki { background: url(../img/logo2.png) no-repeat; width: 40px; height: 42px; float: left; margin-right: 10px; display: block; background-size: contain; }
 .nav-menu .brand .brand-logo { margin-top: 4px; text-transform: uppercase; display: table; float: left; line-height: 120%; color: #001842; font-family: montserratbold; }
 .nav-menu .brand .brand-logo:hover { color: #39a3d0; }
 .nav-menu .nav { float: left; margin-top: 14px; padding-left: 20px; }

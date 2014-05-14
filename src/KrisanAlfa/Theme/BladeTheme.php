@@ -36,6 +36,7 @@
 namespace KrisanAlfa\Theme;
 
 use Bono\App;
+use RuntimeException;
 
 /**
  * A Blade Theme for Bono Theme
@@ -54,7 +55,7 @@ class BladeTheme extends \Bono\Theme\Theme
     /**
      * Add base directory to the view base directory array and resolve asset files
      *
-     * @param $array $config BladeTheme configuration
+     * @param array $config BladeTheme configuration
      */
     public function __construct($config)
     {
@@ -106,10 +107,10 @@ class BladeTheme extends \Bono\Theme\Theme
      * Try to find template inside baseDirectory array
      *
      * @param string $dir      Which directory that will be tested
-     * @param [type] $template The template that expected resides in directory
-     * @param [type] $view     View engine
+     * @param string $template The template that expected resides in directory
+     * @param string $view     View engine
      *
-     * @return [type] [description]
+     * @return string [description]
      */
     public function tryTemplate($dir, $template, $view)
     {
@@ -147,7 +148,7 @@ class BladeTheme extends \Bono\Theme\Theme
 
         try {
             $retVal->__toString();
-        } catch (\RuntimeException $e) {
+        } catch (RuntimeException $e) {
             $app->error($e);
         }
 

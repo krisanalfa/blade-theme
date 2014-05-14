@@ -22,10 +22,12 @@
 </head>
 
 <body>
+    {{ f('notification.show') }}
+
     <!-- NAVBAR -->
     @include('components.navbar')
 
-    <div class="le-content">
+    <div class="container">
         <div class="row alert-row">
             @if(isset($flash['error']))
                 <div class="alert error">
@@ -48,6 +50,7 @@
     <script type="text/javascript" charset="utf-8" src="{{ Theme::base('js/vendor/jquery.js') }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ Theme::base('js/vendor/underscore.js') }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ Theme::base('js/vendor/moment.js') }}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ Theme::base('js/main.js') }}"></script>
     <script type="text/javascript" charset="utf-8">
     (function(){
         var URL_SITE = window.URL_SITE = '{{ URL::site() }}',
