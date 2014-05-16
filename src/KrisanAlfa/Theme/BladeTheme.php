@@ -36,6 +36,7 @@
 namespace KrisanAlfa\Theme;
 
 use Bono\App;
+use Bono\Theme\Theme;
 use RuntimeException;
 
 /**
@@ -48,7 +49,7 @@ use RuntimeException;
  * @license   https://raw.github.com/xinix-technology/bono/master/LICENSE MIT
  * @link      https://github.com/krisanalfa/bonoblade
  */
-class BladeTheme extends \Bono\Theme\Theme
+class BladeTheme extends Theme
 {
     protected $extension = '.blade.php';
 

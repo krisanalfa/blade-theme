@@ -2,6 +2,9 @@
     "name": "krisanalfa/blade-theme",
     "description": "Blade Theme",
     "license": "MIT",
+    "require": {
+        "krisanalfa/bono-blade": "dev-master"
+    },
     "authors": [
         {
             "name": "Krisan Alfa Timur",
