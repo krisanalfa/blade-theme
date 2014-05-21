@@ -1,10 +1,7 @@
 @section('content')
-<?php
-
-use KrisanAlfa\Theme\BladeTheme\Helper\Form;
+<?php use KrisanAlfa\Theme\BladeTheme\Helper\Form;
 
 $form = Form::create()->of($entry);
-
 ?>
 
 <h2 class="title-content">{{ f('controller.name') }}</h2>
@@ -30,7 +27,7 @@ $form = Form::create()->of($entry);
         </div>
     </div>
     <fieldset class="register">
-        {{ $form->show() }}
+        {{ $form->show(array('readonly' => true)) }}
     </fieldset>
 </form>
 

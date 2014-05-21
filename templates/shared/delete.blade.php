@@ -4,7 +4,6 @@
 </h2>
 
 <form action="" method="POST">
-
     <fieldset class="register">
         <input type="hidden" name="confirm" value="1">
         <p>

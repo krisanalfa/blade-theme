@@ -28,21 +28,6 @@
     @include('components.navbar')
 
     <div class="container">
-        <div class="row alert-row">
-            @if(isset($flash['error']))
-                <div class="alert error">
-                    <button type="button" class="close">×</button>
-                    {{ $flash['error'] }}
-                </div>
-            @endif
-            @if(isset($flash['info']))
-                <div class="alert success">
-                    <button type="button" class="close">×</button>
-                    {{ $flash['info'] }}
-                </div>
-            @endif
-        </div>
-
         <!-- PAGE CONTENT -->
         @yield('content')
     </div>
@@ -54,8 +39,8 @@
     <script type="text/javascript" charset="utf-8">
     (function(){
         var URL_SITE = window.URL_SITE = '{{ URL::site() }}',
-            URL_BASE = window.URL_BASE = '{{ URL::base() }}';}
-    )();
+            URL_BASE = window.URL_BASE = '{{ URL::base() }}';
+    })();
     </script>
 
     <!-- PAGE LEVEL SCRIPT -->

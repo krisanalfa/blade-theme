@@ -1,13 +1,10 @@
-<?php
-
-use Norm\Norm;
+<?php use Norm\Norm;
 
 $name = $self->get('name') ?: $self->get('foreign');
 
 if (! isset($entries)) {
     $entries = Norm::factory(ucfirst($self->get('foreign')))->find();
 }
-
 ?>
 <select name="{{ lcfirst($name) }}">
     <option>&mdash;</option>

@@ -1,10 +1,7 @@
 @section('content')
-<?php
-
-use KrisanAlfa\Theme\BladeTheme\Helper\Form;
+<?php use KrisanAlfa\Theme\BladeTheme\Helper\Form;
 
 $form = Form::create()->of($entry);
-
 ?>
 
 <h2 class="title-content">{{ f('controller.name') }}: Create</h2>

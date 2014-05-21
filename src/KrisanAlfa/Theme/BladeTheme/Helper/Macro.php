@@ -112,7 +112,7 @@ class Macro
         $obj = array();
         $obj['name'] = $name;
 
-        return \App::getInstance()->theme->partial('_schema.datepicker', array(
+        return App::getInstance()->theme->partial('_schema.datepicker', array(
             'value' => $value,
             'entry' => null,
             'self' => $obj
@@ -167,7 +167,7 @@ class Macro
      */
     public static function dropDownCollection($name, $value, $collectionName, array $attributes = array())
     {
-        $_collection = \Norm::factory($collectionName)->find();
+        $_collection = Norm::factory($collectionName)->find();
         $collection = array();
 
         foreach ($_collection as $_model) {

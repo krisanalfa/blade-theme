@@ -2,6 +2,7 @@
 <?php $schema = \Norm::factory(f('controller.name'))->schema(); ?>
 
 <h2 class="title-content">{{ f('controller.name') }}</h2>
+
 <div class="nav-form">
     <div class="row">
         <div class="span-12">
@@ -25,6 +26,7 @@
                 @endforeach
             </tr>
         </thead>
+
         <tbody>
             @foreach ($entries as $entry)
                 <tr>
