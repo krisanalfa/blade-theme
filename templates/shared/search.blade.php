@@ -35,10 +35,10 @@
                             <td>
                                 @if(reset($schema) == $schema[$key])
                                     <a href="{{ f('controller.url', '/'.$entry['$id']) }}">
-                                        {{ $schema[$key]->presetPlain($entry[$key], $entry) }}
+                                        {{ $schema[$key]->formatPlain($entry[$key], $entry) }}
                                     </a>
                                 @else
-                                    {{ $schema[$key]->presetPlain($entry[$key], $entry) }}
+                                    {{ $schema[$key]->formatPlain($entry[$key], $entry) }}
                                 @endif
                             </td>
                         @endif

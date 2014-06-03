@@ -124,7 +124,7 @@ class Form
      */
     public function input($key)
     {
-        return $this->schema[$key]->presetInput(@$this->data[$key])."\n";
+        return $this->schema[$key]->formatInput(@$this->data[$key])."\n";
     }
 
     /**
@@ -136,6 +136,6 @@ class Form
      */
     public function readonly($key)
     {
-        return $this->schema[$key]->presetReadonly(@$this->data[$key])."\n";
+        return $this->schema[$key]->formatReadonly(@$this->data[$key])."\n";
     }
 }

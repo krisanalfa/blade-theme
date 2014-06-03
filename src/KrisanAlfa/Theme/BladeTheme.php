@@ -30,7 +30,7 @@ class BladeTheme extends Theme
         $directory = explode(DIRECTORY_SEPARATOR.'src', __DIR__);
         $directory = reset($directory);
 
-        $this->addBaseDirectory($directory, 3);
+        $this->addBaseDirectory($directory, 5);
 
         $this->resolveAssetPath('css');
         $this->resolveAssetPath('fonts');

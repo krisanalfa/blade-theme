@@ -1,3 +1,12 @@
+<?php
+
+use Bono\App;
+
+$app = App::getInstance();
+$menus = $app->config('navbar.menus');
+$title = $app->config('navbar.title');
+
+?>
 <nav class="nav-menu">
     <div class="container-fluid">
         <div class="wrapper">
@@ -7,34 +16,33 @@
                         <h1 class="brand">
                             <a href="{{ URL::site() }}">
                                 <span class="logo"></span>
-                                <span class="brand-logo">
-                                    Bono </br>
-                                    PHP Framework
-                                </span>
+                                <span class="brand-logo">{{ $title }}</span>
                             </a>
                         </h1>
                     </div>
                     <div class="">
                         <div class="nav">
                             <ul class="menu">
-                                <li>
-                                    <a href="{{ URL::site('/user') }}"><i class="fa fa-user"></i>&nbsp;&nbsp;User</a>
-                                </li>
-                                <li class="collapsible login">
-                                    <a href="#"><i class="fa fa-bars"></i>&nbsp;&nbsp;Menu</a>
-                                    <ul>
+                                @foreach($menus as $title => $uri)
+                                    @if(! isset($uri['children']))
                                         <li>
-                                            <a href="{{ URL::site('/') }}">
-                                                <i class="fa fa-home"></i>&nbsp;&nbsp;Home
-                                            </a>
+                                            <a href="{{ URL::site($uri['uri']) }}">{{ @$uri['icon'] }}</i>&nbsp;&nbsp;{{ $uri['title'] }}</a>
                                         </li>
-                                        <li>
-                                            <a href="{{ URL::site('/disclaimer') }}">
-                                                <i class="fa fa-info"></i>&nbsp;&nbsp;Disclaimer
-                                            </a>
+                                    @else
+                                        <li class="collapsible login">
+                                            <a href="#">{{ @$uri['icon'] }}&nbsp;&nbsp; {{ $uri['title'] }} </a>
+                                            <ul>
+                                                @foreach ($uri['children'] as $title => $uri)
+                                                    <li>
+                                                        <a href="{{ URL::site($uri['uri']) }}">
+                                                            {{ @$uri['icon'] }}&nbsp;&nbsp;{{ $uri['title'] }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
                                         </li>
-                                    </ul>
-                                </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
