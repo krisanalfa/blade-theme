@@ -26,6 +26,7 @@ span.field, input[type="text"], input[type="password"], input[type="email"], inp
 select { border: 0; border-bottom: 1px solid #ddd; background-color: transparent; cursor: pointer; font-size: 0.9em; text-indent: 0.01px; text-overflow: ""; }
 textarea { max-width: 100%; max-height: 98px; }
 ul.flat li:last-child { margin-right: 0; }
+code { padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; white-space: nowrap; border-radius: 4px; }
 
 table th, table td { font-size: 0.9em; }
 table .table-creator-empty, table .table-holder-empty { text-align: center; }

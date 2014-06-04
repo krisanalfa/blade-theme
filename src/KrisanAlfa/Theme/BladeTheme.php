@@ -110,14 +110,10 @@ class BladeTheme extends Theme
 
         $app->view->replace($data);
 
-        $retVal = $app->view->make($template, $data);
-
         try {
-            $retVal->__toString();
+            return $app->view->make($template, $data)->render();
         } catch (RuntimeException $e) {
             $app->error($e);
         }
-
-        return (string) $retVal;
     }
 }
