@@ -1,6 +1,6 @@
 {
     "name": "krisanalfa/blade-theme",
-    "description": "Blade Theme",
+    "description": "Basic Blade Theme Resolver Class",
     "license": "MIT",
     "require": {
         "krisanalfa/bono-blade": "dev-master"

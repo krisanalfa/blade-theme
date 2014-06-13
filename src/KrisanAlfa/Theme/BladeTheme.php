@@ -26,18 +26,13 @@ class BladeTheme extends Theme
     public function __construct($config)
     {
         parent::__construct($config);
-
-        $directory = explode(DIRECTORY_SEPARATOR.'src', __DIR__);
-        $directory = reset($directory);
-
-        $this->addBaseDirectory($directory, 5);
-
-        $this->resolveAssetPath('css');
-        $this->resolveAssetPath('fonts');
-        $this->resolveAssetPath('img');
-        $this->resolveAssetPath('js');
     }
 
+    /**
+     * Get base directory of the template
+     *
+     * @return array
+     */
     public function getBaseDirectory()
     {
         return $this->baseDirectories;

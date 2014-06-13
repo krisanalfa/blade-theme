@@ -1,1 +1,3 @@
-#Bono Blade Theme Using Viper Theme
+#Bono Blade Theme
+
+Basic Blade Theme Resolver Class
