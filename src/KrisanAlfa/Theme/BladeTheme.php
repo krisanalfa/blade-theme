@@ -16,6 +16,10 @@ use ErrorException;
  */
 class BladeTheme extends Theme
 {
+    /**
+     * Extension of blade template engine
+     * @var string
+     */
     protected $extension = '.blade.php';
 
     /**
@@ -29,63 +33,10 @@ class BladeTheme extends Theme
     }
 
     /**
-     * Resolve template path based on baseDirectory array
-     *
-     * @param string $template Template to resolve
-     * @param mixed  $view     View engine
-     *
-     * @return string Template to render
-     */
-    public function resolve($template, $view = null)
-    {
-        $segments = explode('/', $template);
-        $page     = end($segments);
-
-        foreach ($this->baseDirectories as $dirs) {
-            foreach ($dirs as $dir) {
-                if ($tpl = $this->tryTemplate(
-                    $dir . DIRECTORY_SEPARATOR . 'templates',
-                    $template.$this->extension,
-                    $view
-                )) {
-                    return $tpl;
-                }
-            }
-        }
-    }
-
-    /**
-     * Try to find template inside baseDirectory array
-     *
-     * @param string $dir      Which directory that will be tested
-     * @param string $template The template that expected resides in directory
-     * @param string $view     View engine
-     *
-     * @return string [description]
-     */
-    public function tryTemplate($dir, $template, $view)
-    {
-        $dir = rtrim($dir, DIRECTORY_SEPARATOR);
-
-        if (is_readable($dir.DIRECTORY_SEPARATOR.$template)) {
-            $template = explode($this->extension, $template);
-            $template = reset($template);
-
-            if ($view) {
-                $view->setTemplatesDirectory($dir);
-            }
-
-            return $template;
-        }
-    }
-
-    /**
-     * Get a partial
-     *
-     * @param string $template Partial template string name
-     * @param mixed  $data     The data that would be passed to partial content
-     *
-     * @return KrisanAlfa\Blade\BonoBlade::template
+     * Get partial template
+     * @param  string $template
+     * @param  array  $data
+     * @return string
      */
     public function partial($template, $data)
     {
