@@ -2,7 +2,7 @@
 
 use Bono\App;
 use Bono\Theme\Theme;
-use RuntimeException;
+use ErrorException;
 
 /**
  * A Blade Theme for Bono Theme
@@ -17,16 +17,6 @@ use RuntimeException;
 class BladeTheme extends Theme
 {
     protected $extension = '.blade.php';
-
-    /**
-     * Add base directory to the view base directory array and resolve asset files
-     *
-     * @param array $config BladeTheme configuration
-     */
-    public function __construct($config)
-    {
-        parent::__construct($config);
-    }
 
     /**
      * Get base directory of the template
@@ -81,7 +71,7 @@ class BladeTheme extends Theme
             $template = explode($this->extension, $template);
             $template = reset($template);
 
-            if (isset($view)) {
+            if ($view) {
                 $view->setTemplatesDirectory($dir);
             }
 
@@ -107,7 +97,7 @@ class BladeTheme extends Theme
 
         try {
             return $app->view->make($template, $data)->render();
-        } catch (RuntimeException $e) {
+        } catch (ErrorException $e) {
             $app->error($e);
         }
     }
