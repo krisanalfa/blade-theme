@@ -12,12 +12,13 @@ use ErrorException;
  * @author    Krisan Alfa Timur <krisan47@gmail.com>
  * @copyright 2013 PT Sagara Xinix Solusitama
  * @license   https://raw.github.com/xinix-technology/bono/master/LICENSE MIT
- * @link      https://github.com/krisanalfa/bonoblade
+ * @link      https://github.com/krisanalfa/blade-theme
  */
 class BladeTheme extends Theme
 {
     /**
      * Extension of blade template engine
+     *
      * @var string
      */
     protected $extension = '.blade.php';
@@ -34,6 +35,7 @@ class BladeTheme extends Theme
 
     /**
      * Get partial template
+     *
      * @param  string $template
      * @param  array  $data
      * @return string
@@ -51,5 +53,16 @@ class BladeTheme extends Theme
         } catch (ErrorException $e) {
             $app->error($e);
         }
+    }
+
+    /**
+     * Resolve template name
+     *
+     * @param  string $template
+     * @return string
+     */
+    public function resolve($template)
+    {
+        return str_replace('/', '.', $template);
     }
 }
