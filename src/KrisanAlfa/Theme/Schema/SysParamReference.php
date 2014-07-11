@@ -1,4 +1,4 @@
-<?php namespace KrisanAlfa\Theme\BladeFoundation\Schema;
+<?php namespace KrisanAlfa\Theme\Schema;
 
 use Norm\Schema\Reference as NormReference;
 use Norm\Norm;

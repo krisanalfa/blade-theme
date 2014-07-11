@@ -1,4 +1,4 @@
-<?php namespace KrisanAlfa\Theme\BladeFoundation\Schema;
+<?php namespace KrisanAlfa\Theme\Schema;
 
 use Bono\App;
 use Norm\Schema\String as NormString;

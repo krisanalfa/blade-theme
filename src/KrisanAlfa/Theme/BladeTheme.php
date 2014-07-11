@@ -23,6 +23,16 @@ class BladeTheme extends Theme
      */
     protected $extension = '.blade.php';
 
+    public function __construct($config)
+    {
+        parent::__construct($config);
+
+        $directory = explode(DIRECTORY_SEPARATOR.'src', __DIR__);
+        $directory = reset($directory);
+
+        $this->addBaseDirectory($directory, 5);
+    }
+
     /**
      * Get base directory of the template
      *
@@ -61,7 +71,7 @@ class BladeTheme extends Theme
      * @param  string $template
      * @return string
      */
-    public function resolve($template)
+    public function resolve($template, $view = null)
     {
         return str_replace('/', '.', $template);
     }
