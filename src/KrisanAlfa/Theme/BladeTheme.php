@@ -3,6 +3,7 @@
 use Bono\App;
 use Bono\Theme\Theme;
 use ErrorException;
+use KrisanAlfa\Blade\BonoBlade;
 
 /**
  * A Blade Theme for Bono Theme
@@ -31,6 +32,7 @@ class BladeTheme extends Theme
         $directory = reset($directory);
 
         $this->addBaseDirectory($directory, 5);
+        $this->app = App::getInstance();
     }
 
     /**
@@ -38,7 +40,7 @@ class BladeTheme extends Theme
      *
      * @return array
      */
-    public function getBaseDirectory()
+    public function getBaseDirectories()
     {
         return $this->baseDirectories;
     }
@@ -46,13 +48,14 @@ class BladeTheme extends Theme
     /**
      * Get partial template
      *
-     * @param  string $template
-     * @param  array  $data
+     * @param string $template
+     * @param array  $data
+     *
      * @return string
      */
     public function partial($template, $data)
     {
-        $app      = App::getInstance();
+        $app      = $this->app;
         $template = explode('/', $template);
         $template = implode('.', $template) ?: null;
 
@@ -68,11 +71,111 @@ class BladeTheme extends Theme
     /**
      * Resolve template name
      *
-     * @param  string $template
+     * @param string $template
+     *
      * @return string
      */
     public function resolve($template, $view = null)
     {
         return str_replace('/', '.', $template);
+    }
+
+    /**
+     * Get specific view of this theme, I use Blade View Engine
+     *
+     * @return KrisanAlfa\Blade\BonoBlade
+     */
+    public function getView()
+    {
+        return new BonoBlade($this->setViewPaths(), $this->setCachePath(), $this->setLayout());
+    }
+
+    /**
+     * Create our cachePath for Blade Compiler
+     *
+     * @throw Exception When we cannot create cache path, and the cache path doesn't exist
+     *
+     * @return void
+     */
+    protected function makeCachePath()
+    {
+        try {
+            mkdir($this->cachePath, 0755);
+        } catch (Exception $e) {
+            $this->app->error($e);
+        }
+    }
+
+    /**
+     * Set view paths, where template and other view component resides
+     *
+     * @return void
+     */
+    protected function setViewPaths()
+    {
+        $ours = $this->defaultConfig('templates.path', (array) $this->app->config('app.templates.path'));
+        $theme = $this->arrayFlatten($this->getBaseDirectories());
+
+        return array_merge_recursive($ours, $theme);
+    }
+
+    /**
+     * Set and create our cache path for optimizing blade compiling
+     *
+     * @return void
+     */
+    protected function setCachePath()
+    {
+        $cachePath = $this->defaultConfig('cache.path', '../cache');
+
+        if (! is_dir($cachePath)) {
+            $this->makeCachePath();
+        }
+
+        return $cachePath;
+    }
+
+    /**
+     * Set our basic layout
+     *
+     * @return void
+     */
+    protected function setLayout()
+    {
+        return $this->defaultConfig('layout', 'layout');
+    }
+
+    /**
+     * Get default option
+     * @param string $key     The key in our options
+     * @param mixed  $default Default if key didn't found
+     *
+     * @return mixed
+     */
+    protected function defaultConfig($key, $default)
+    {
+        if (isset($this->options[$key])) {
+            return $this->options[$key];
+        } else {
+            return $default;
+        }
+    }
+
+    /**
+     * A helper to flatten array
+     *
+     * @param array $array The array you want to flattened
+     *
+     * @return array The flattened array
+     */
+    protected function arrayFlatten($array)
+    {
+        $flattenedArray = array();
+
+        array_walk_recursive($array, function ($x) use (&$flattenedArray) {
+            $flattenedArray[] = $x;
+        });
+
+        return $flattenedArray;
     }
 }
