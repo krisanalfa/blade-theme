@@ -15,7 +15,9 @@ class Date extends DateTime
 
     public function formatPlain($value, $entry = null)
     {
-        return $value->format('d-M-Y');
+        if ($value) {
+            return $value->format('d-M-Y');
+        }
     }
 
     public function formatReadonly($value, $entry = null)
