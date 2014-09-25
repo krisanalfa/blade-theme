@@ -97,10 +97,10 @@ class BladeTheme extends Theme
      *
      * @return void
      */
-    protected function makeCachePath()
+    protected function makeCachePath($cachePath)
     {
         try {
-            mkdir($this->cachePath, 0755);
+            mkdir($cachePath, 0755);
         } catch (Exception $e) {
             $this->app->error($e);
         }
@@ -129,7 +129,7 @@ class BladeTheme extends Theme
         $cachePath = $this->defaultConfig('cache.path', '../cache');
 
         if (! is_dir($cachePath)) {
-            $this->makeCachePath();
+            $this->makeCachePath($cachePath);
         }
 
         return $cachePath;
