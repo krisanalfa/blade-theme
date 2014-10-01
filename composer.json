@@ -3,7 +3,7 @@
     "description": "Basic Blade Theme Resolver Class",
     "license": "MIT",
     "require": {
-        "krisanalfa/bono-blade": "~0.8.1"
+        "krisanalfa/bono-blade": "~0.8.2"
     },
     "authors": [
         {
