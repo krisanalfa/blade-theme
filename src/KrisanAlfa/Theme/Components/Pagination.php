@@ -9,6 +9,8 @@ class Pagination
 
     protected $app     = null;
 
+    protected $current = null;
+
     protected $entries = null;
 
     protected $limit   = null;
@@ -61,6 +63,11 @@ class Pagination
 
         $all     = $this->entries->count();
         $average = round($all / $limit, 0, PHP_ROUND_HALF_UP);
+
+        if ($average == 1) {
+            return;
+        }
+
         $skip    = $this->app->request->get('!skip');
 
         for ($i = 0; $i < $average; $i++) {
