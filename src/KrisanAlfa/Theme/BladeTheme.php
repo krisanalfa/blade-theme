@@ -2,7 +2,6 @@
 
 use Bono\App;
 use Bono\Theme\Theme;
-use ErrorException;
 use KrisanAlfa\Blade\BonoBlade;
 
 /**
@@ -61,11 +60,7 @@ class BladeTheme extends Theme
 
         $app->view->replace($data);
 
-        try {
-            return $app->view->make($template, $data)->render();
-        } catch (ErrorException $e) {
-            $app->error($e);
-        }
+        return $app->view->make($template, $data)->render();
     }
 
     /**
