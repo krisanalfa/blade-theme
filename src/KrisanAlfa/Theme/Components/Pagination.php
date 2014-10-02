@@ -126,7 +126,7 @@ class Pagination
         }
 
         $all     = $this->entries->count();
-        $average = round($all / $limit, 0, PHP_ROUND_HALF_UP);
+        $average = ceil($all / $limit);
 
         if ($average == 1) {
             return;
