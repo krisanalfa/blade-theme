@@ -23,6 +23,18 @@ class BladeTheme extends Theme
      */
     protected $extension = '.blade.php';
 
+    /**
+     * View instance
+     *
+     * @var KrisanAlfa\Blade\BonoBlade
+     */
+    protected $view = null;
+
+    /**
+     * Constructor
+     *
+     * @param array $config Configuration of theme
+     */
     public function __construct($config)
     {
         parent::__construct($config);
@@ -82,7 +94,11 @@ class BladeTheme extends Theme
      */
     public function getView()
     {
-        return new BonoBlade($this->setViewPaths(), $this->setCachePath(), $this->setLayout());
+        if (is_null($this->view)) {
+            $this->view = new BonoBlade($this->setViewPaths(), $this->setCachePath(), $this->setLayout());
+        }
+
+        return $this->view;
     }
 
     /**
