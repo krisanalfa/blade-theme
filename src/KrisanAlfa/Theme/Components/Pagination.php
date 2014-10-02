@@ -2,24 +2,71 @@
 
 use Bono\App;
 use Bono\Helper\URL;
+use Norm\Cursor;
 
 class Pagination
 {
+    /**
+     * Static instance, you can create class via static method
+     *
+     * @var KrisanAlfa\Theme\Components\Pagination
+     */
     protected static $instances = null;
 
-    protected $app     = null;
+    /**
+     * Application context
+     *
+     * @var Bono\App
+     */
+    protected $app              = null;
 
-    protected $current = null;
+    /**
+     * Current page
+     *
+     * @var int
+     */
+    protected $current          = null;
 
-    protected $entries = null;
+    /**
+     * Entries
+     * @var Norm\Cursor
+     */
+    protected $entries          = null;
 
-    protected $limit   = null;
+    /**
+     * Limit of each collection that shown in a page
+     *
+     * @var int
+     */
+    protected $limit            = null;
 
-    protected $links   = array();
+    /**
+     * Link contain paging data
+     *
+     * @var array
+     */
+    protected $links            = array();
 
-    protected $partialTemplate = 'components/paginator';
+    /**
+     * Partial template that we use for paging
+     *
+     * @var string
+     */
+    protected $partialTemplate  = 'components/paginator';
 
-    public function __construct($entries)
+    /**
+     * Base URL that we use for paging
+     *
+     * @var string
+     */
+    protected $baseUrl = '';
+
+    /**
+     * Constructor
+     *
+     * @param Norm\Cursor $entries Entries that we want to page
+     */
+    public function __construct(Cursor $entries)
     {
         $this->entries = $entries;
         $this->app     = App::getInstance();
@@ -35,7 +82,14 @@ class Pagination
         $this->baseUrl = URL::current();
     }
 
-    public static function create($entries)
+    /**
+     * Create new instance of KrisanAlfa\Theme\Components\Pagination via static method
+     *
+     * @param Norm\Cursor $entries Entries that we want to page
+     *
+     * @return KrisanAlfa\Theme\Components\Pagination New instance of Pagination class
+     */
+    public static function create(Cursor $entries)
     {
         $Class = get_called_class();
 
@@ -46,6 +100,11 @@ class Pagination
         return static::$instances;
     }
 
+    /**
+     * Set out base URL
+     *
+     * @param [type] $url [description]
+     */
     public function setBaseUrl($url)
     {
         $this->baseUrl = $url;
@@ -53,6 +112,11 @@ class Pagination
         return $this;
     }
 
+    /**
+     * Paginate the entries into snipped collection
+     *
+     * @return string The HTML String that appended to our template
+     */
     public function paginate()
     {
         $limit = $this->limit;
@@ -90,11 +154,23 @@ class Pagination
         ));
     }
 
+    /**
+     * Get the partial template
+     *
+     * @return string Partial template that we want to use for paging
+     */
     protected function getPartialTemplate()
     {
         return $this->partialTemplate;
     }
 
+    /**
+     * Set partial template
+     *
+     * @param string $partial Partial template that we want to use for paging
+     *
+     * @return KrisanAlfa\Theme\Components\Pagination Return instances of Pagination for chaining access
+     */
     public function setPartialTemplate($partial)
     {
         $this->partialTemplate = $partial;
