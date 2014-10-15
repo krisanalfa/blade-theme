@@ -2,7 +2,7 @@
 
 use Bono\App;
 use Bono\Theme\Theme;
-use KrisanAlfa\Blade\BonoBlade;
+use KrisanAlfa\Blade\BladeView;
 
 /**
  * A Blade Theme for Bono Theme
@@ -26,7 +26,7 @@ class BladeTheme extends Theme
     /**
      * View instance
      *
-     * @var KrisanAlfa\Blade\BonoBlade
+     * @var KrisanAlfa\Blade\BladeView
      */
     protected $view = null;
 
@@ -43,6 +43,13 @@ class BladeTheme extends Theme
     protected $app;
 
     /**
+     * Blade Theme options
+     *
+     * @var array
+     */
+    protected $options = array();
+
+    /**
      * Constructor
      *
      * @param array $options Theme options
@@ -53,7 +60,10 @@ class BladeTheme extends Theme
         $defaultOptions = array(
             'cachePath' => '../cache',
         );
+
         $options = array_merge($defaultOptions, $options);
+
+        $this->options = $options;
 
         // call parent constructor
         parent::__construct($options);
@@ -100,7 +110,7 @@ class BladeTheme extends Theme
     /**
      * Get specific view of this theme, I use Blade View Engine
      *
-     * @return KrisanAlfa\Blade\BonoBlade
+     * @return KrisanAlfa\Blade\BladeView
      */
     public function getView()
     {
@@ -109,87 +119,13 @@ class BladeTheme extends Theme
                 mkdir($this->options['cachePath'], 0755, true);
             }
 
-            $this->view = new BonoBlade($this->getViewPaths(), $this->options['cachePath']);
+            $this->options['viewPaths'] = $this->arrayFlatten($this->baseDirectories);
+
+            $this->view = new BladeView($this->options);
         }
 
         return $this->view;
     }
-
-    // /**
-    //  * Create our cachePath for Blade Compiler
-    //  *
-    //  * @throw Exception When we cannot create cache path, and the cache path doesn't exist
-    //  *
-    //  * @return void
-    //  */
-    // protected function makeCachePath($cachePath)
-    // {
-    //     try {
-    //         mkdir($cachePath, 0755);
-    //     } catch (Exception $e) {
-    //         $this->app->error($e);
-    //     }
-    // }
-
-    /**
-     * Get view paths, where template and other view component resides
-     *
-     * @return void
-     */
-    protected function getViewPaths()
-    {
-        if (is_null($this->viewPaths)) {
-            // $ours = $this->defaultConfig('templates.path', (array) $this->app->config('app.templates.path'));
-            // $theme = $this->arrayFlatten($this->baseDirectories);
-
-            // $this->viewPaths = array_merge_recursive($ours, $theme);
-            $this->viewPaths = $this->arrayFlatten($this->baseDirectories);
-        }
-
-        return $this->viewPaths;
-    }
-
-    // /**
-    //  * Set and create our cache path for optimizing blade compiling
-    //  *
-    //  * @return void
-    //  */
-    // protected function setCachePath()
-    // {
-    //     $cachePath = $this->defaultConfig('cache.path', '../cache');
-
-    //     if (! is_dir($cachePath)) {
-    //         $this->makeCachePath($cachePath);
-    //     }
-
-    //     return $cachePath;
-    // }
-
-    // /**
-    //  * Set our basic layout
-    //  *
-    //  * @return void
-    //  */
-    // protected function setLayout()
-    // {
-    //     return $this->defaultConfig('layout', 'layout');
-    // }
-
-    // /**
-    //  * Get default option
-    //  * @param string $key     The key in our options
-    //  * @param mixed  $default Default if key didn't found
-    //  *
-    //  * @return mixed
-    //  */
-    // protected function defaultConfig($key, $default)
-    // {
-    //     if (isset($this->options[$key])) {
-    //         return $this->options[$key];
-    //     } else {
-    //         return $default;
-    //     }
-    // }
 
     /**
      * A helper to flatten array
