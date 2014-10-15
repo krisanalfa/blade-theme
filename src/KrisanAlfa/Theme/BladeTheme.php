@@ -31,29 +31,39 @@ class BladeTheme extends Theme
     protected $view = null;
 
     /**
-     * Constructor
-     *
-     * @param array $config Configuration of theme
+     * View paths cache
+     * @var array
      */
-    public function __construct($config)
-    {
-        parent::__construct($config);
-
-        $directory = explode(DIRECTORY_SEPARATOR.'src', __DIR__);
-        $directory = reset($directory);
-
-        $this->addBaseDirectory($directory, 5);
-        $this->app = App::getInstance();
-    }
+    protected $viewPaths;
 
     /**
-     * Get base directory of the template
-     *
-     * @return array
+     * Reference object to application instance
+     * @var Bono\App
      */
-    public function getBaseDirectories()
+    protected $app;
+
+    /**
+     * Constructor
+     *
+     * @param array $options Theme options
+     */
+    public function __construct(array $options = array())
     {
-        return $this->baseDirectories;
+        // prepare default options
+        $defaultOptions = array(
+            'cachePath' => '../cache',
+        );
+        $options = array_merge($defaultOptions, $options);
+
+        // call parent constructor
+        parent::__construct($options);
+
+        // set blade-theme module dir as one of base directory
+        $directory = explode(DIRECTORY_SEPARATOR.'src', __DIR__);
+        $directory = reset($directory);
+        $this->addBaseDirectory($directory, 5);
+
+        $this->app = App::getInstance();
     }
 
     /**
@@ -64,7 +74,7 @@ class BladeTheme extends Theme
      *
      * @return string
      */
-    public function partial($template, $data)
+    public function partial($template, array $data = array())
     {
         $app      = $this->app;
         $template = explode('/', $template);
@@ -95,82 +105,91 @@ class BladeTheme extends Theme
     public function getView()
     {
         if (is_null($this->view)) {
-            $this->view = new BonoBlade($this->setViewPaths(), $this->setCachePath(), $this->setLayout());
+            if (!is_dir($this->options['cachePath'])) {
+                mkdir($this->options['cachePath'], 0755, true);
+            }
+
+            $this->view = new BonoBlade($this->getViewPaths(), $this->options['cachePath']);
         }
 
         return $this->view;
     }
 
+    // /**
+    //  * Create our cachePath for Blade Compiler
+    //  *
+    //  * @throw Exception When we cannot create cache path, and the cache path doesn't exist
+    //  *
+    //  * @return void
+    //  */
+    // protected function makeCachePath($cachePath)
+    // {
+    //     try {
+    //         mkdir($cachePath, 0755);
+    //     } catch (Exception $e) {
+    //         $this->app->error($e);
+    //     }
+    // }
+
     /**
-     * Create our cachePath for Blade Compiler
-     *
-     * @throw Exception When we cannot create cache path, and the cache path doesn't exist
+     * Get view paths, where template and other view component resides
      *
      * @return void
      */
-    protected function makeCachePath($cachePath)
+    protected function getViewPaths()
     {
-        try {
-            mkdir($cachePath, 0755);
-        } catch (Exception $e) {
-            $this->app->error($e);
-        }
-    }
+        if (is_null($this->viewPaths)) {
+            // $ours = $this->defaultConfig('templates.path', (array) $this->app->config('app.templates.path'));
+            // $theme = $this->arrayFlatten($this->baseDirectories);
 
-    /**
-     * Set view paths, where template and other view component resides
-     *
-     * @return void
-     */
-    protected function setViewPaths()
-    {
-        $ours = $this->defaultConfig('templates.path', (array) $this->app->config('app.templates.path'));
-        $theme = $this->arrayFlatten($this->getBaseDirectories());
-
-        return array_merge_recursive($ours, $theme);
-    }
-
-    /**
-     * Set and create our cache path for optimizing blade compiling
-     *
-     * @return void
-     */
-    protected function setCachePath()
-    {
-        $cachePath = $this->defaultConfig('cache.path', '../cache');
-
-        if (! is_dir($cachePath)) {
-            $this->makeCachePath($cachePath);
+            // $this->viewPaths = array_merge_recursive($ours, $theme);
+            $this->viewPaths = $this->arrayFlatten($this->baseDirectories);
         }
 
-        return $cachePath;
+        return $this->viewPaths;
     }
 
-    /**
-     * Set our basic layout
-     *
-     * @return void
-     */
-    protected function setLayout()
-    {
-        return $this->defaultConfig('layout', 'layout');
-    }
+    // /**
+    //  * Set and create our cache path for optimizing blade compiling
+    //  *
+    //  * @return void
+    //  */
+    // protected function setCachePath()
+    // {
+    //     $cachePath = $this->defaultConfig('cache.path', '../cache');
 
-    /**
-     * Get default option
-     * @param string $key     The key in our options
-     * @param mixed  $default Default if key didn't found
-     *
-     * @return mixed
-     */
-    protected function defaultConfig($key, $default)
-    {
-        if (isset($this->options[$key])) {
-            return $this->options[$key];
-        } else {
-            return $default;
-        }
-    }
+    //     if (! is_dir($cachePath)) {
+    //         $this->makeCachePath($cachePath);
+    //     }
+
+    //     return $cachePath;
+    // }
+
+    // /**
+    //  * Set our basic layout
+    //  *
+    //  * @return void
+    //  */
+    // protected function setLayout()
+    // {
+    //     return $this->defaultConfig('layout', 'layout');
+    // }
+
+    // /**
+    //  * Get default option
+    //  * @param string $key     The key in our options
+    //  * @param mixed  $default Default if key didn't found
+    //  *
+    //  * @return mixed
+    //  */
+    // protected function defaultConfig($key, $default)
+    // {
+    //     if (isset($this->options[$key])) {
+    //         return $this->options[$key];
+    //     } else {
+    //         return $default;
+    //     }
+    // }
 
     /**
      * A helper to flatten array
