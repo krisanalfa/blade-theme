@@ -1,24 +1,30 @@
+@extends('layout')
+
 @section('content')
-<form method="POST">
-    <fieldset>
-        <legend>{{ f('controller.name') }}</legend>
-        @foreach (Norm::factory(f('controller.name'))->schema() as $name => $field)
-            @unless($field['generated'])
-                <div>
-                    <div>
-                        {{ $field->label() }}
-                    </div>
-                    <div>
-                        {{ $field->formatInput(@$entry[$name], $entry) }}
-                    </div>
-                </div>
-            @endunless
-        @endforeach
+<h2>Create {{ f('controller.name') }}</h2>
+
+<form method="post">
+
+    @foreach(f('app')->controller->schema() as $name => $field)
+
+        @unless($field['hidden'])
 
         <div>
-            <a href="{{ f('controller.url') }}" class="button">Cancel</a>
-            <button type="submit" class="button">Create</button>
+
+            {{ $field->label() }}
+
+            {{ $field->format('input', @$entry[$name]) }}
+
         </div>
-    </fieldset>
+
+        @endunless
+
+    @endforeach
+
+    <div class="command-bar">
+        <input type="submit">
+        <a href="{{ f('controller.url') }}">List</a>
+    </div>
+
 </form>
 @endsection

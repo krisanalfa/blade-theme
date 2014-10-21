@@ -1,42 +1,61 @@
+@extends('layout')
+
 @section('content')
-<?php $schema = Norm::factory(f('controller.name'))->schema();?>
-<h1>{{ f('controller.name') }} List</h1>
-<div>
-    <a href="{{ f('controller.url', '/null/create') }}" class="button">Create New</a>
+<h2>List {{ f('controller.name') }}</h2>
+
+<div class="command-bar">
+    <a href="{{ f('controller.url', '/null/create') }}">Create</a>
+</div>
+
+<div class="table-placeholder">
+
     <table>
         <thead>
             <tr>
-                @foreach ($schema as $key => $field)
-                    @if(! $field['hidden'])
-                        <th>{{ $field['label'] }}</th>
-                    @endif
-                @endforeach
+                @if (f('app')->controller->schema())
+                    @foreach(f('app')->controller->schema() as $name => $field)
+
+                        <th>{{ $field->label(true) }}</th>
+
+                    @endforeach
+                @else
+                    <th>Data</th>
+                @endif
+
             </tr>
         </thead>
         <tbody>
-            @if(! $entries->count(true))
+
+            @if (count($entries))
+
+                @foreach($entries as $entry)
+
                 <tr>
-                    <td colspan="{{ count($schema) }}" style="text-align: center">Empty</td>
-                </tr>
-            @else
-                @foreach ($entries as $entry)
-                    <tr>
-                        @foreach ($schema as $name => $field)
-                            @if($field['hidden'] !== true)
-                                <td>
-                                     @if(reset($schema) === $field)
-                                         <a href="{{ f('controller.url', '/'.$entry['$id']) }}">
-                                             {{ $field->format('plain', $entry[$name], $entry) }}
-                                         </a>
-                                     @else
-                                         {{ $field->format('plain', $entry[$name], $entry) }}
-                                     @endif
-                                </td>
-                            @endif
+                    @if (f('app')->controller->schema())
+                        @foreach(f('app')->controller->schema() as $name => $field)
+
+                        <td>
+                            <a href="{{ f('controller.url', '/'.$entry['$id']) }}">
+                                {{ $field->format('readonly', $entry[$name]) }}
+                            </a>
+                        </td>
+
                         @endforeach
-                    </tr>
-                @endforeach
+                    @else
+                        <td>{{ reset($entry) }}</td>
+                    @endif
+
+                </tr>
+
+                <?php endforeach ?>
+                <?php else: ?>
+
+                <tr>
+                    <td colspan="100">No record!</td>
+                </tr>
+
             @endif
+
         </tbody>
     </table>
 </div>

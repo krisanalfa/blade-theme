@@ -1,15 +1,17 @@
+@extends('layout')
+
 @section('content')
-<form method="POST">
-    <fieldset>
-        <legend>{{ f('controller.name') }}</legend>
-            <input type="hidden" name="confirm" value="1">
+<h2>Delete {{ f('controller.name') }}</h2>
 
-            <strong>Are you sure, you are about to delete {{ count($ids).' entries' }}?</strong>
+<form method="post">
 
-            <div>
-                <a href="{{ dirname(URL::current()) }}" class="button">Cancel</a>
-                <input class="button" type="submit" value="Delete forever">
-            </div>
-    </fieldset>
+    <p>Are you sure?</p>
+
+    <div class="command-bar">
+        <input type="submit" value="Yes">
+        <a href="javascript:history.back()">No</a>
+        <a href="{{ f('controller.url') }}">List</a>
+    </div>
+
 </form>
 @endsection
