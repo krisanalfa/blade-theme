@@ -5,7 +5,7 @@ class SchemaHelper
     public static function getReferenceValue($entry, $schema)
     {
         if (is_string($entry)) {
-            $entryValue = $key;
+            $entryValue = $entry;
         } else {
             $entryValue = $entry[$schema['foreignKey']];
         }
