@@ -146,22 +146,12 @@ class Pagination
             }
         }
 
-        return $this->app->theme->partial($this->getPartialTemplate(), array(
+        return $this->app->theme->partial($this->partialTemplate, array(
             'links'   => $this->links,
             'baseUrl' => $this->baseUrl,
             'current' => $this->current,
             'app'     => $this->app,
         ));
-    }
-
-    /**
-     * Get the partial template
-     *
-     * @return string Partial template that we want to use for paging
-     */
-    protected function getPartialTemplate()
-    {
-        return $this->partialTemplate;
     }
 
     /**
