@@ -115,7 +115,13 @@ class BladeTheme extends Theme
     public function getView()
     {
         if (is_null($this->view)) {
-            if (!is_dir($this->options['cachePath'])) {
+            $appPath = $this->app->config('app.path');
+
+            if (! is_null($appPath)) {
+                $this->options['cachePath'] = $appPath.DIRECTORY_SEPARATOR.$this->options['cachePath'];
+            }
+
+            if (! is_dir($this->options['cachePath'])) {
                 mkdir($this->options['cachePath'], 0755, true);
             }
 
