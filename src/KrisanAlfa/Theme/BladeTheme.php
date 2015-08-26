@@ -58,7 +58,7 @@ class BladeTheme extends Theme
     {
         // prepare default options
         $defaultOptions = array(
-            'cachePath' => '../cache',
+            'cachePath' => 'cache',
         );
 
         $options = array_merge($defaultOptions, $options);
